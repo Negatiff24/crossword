@@ -1,6 +1,8 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
+import Splash from './screens/splash';
+import SignUp from './screens/signUp';
 import Main from './screens/main';
 import Search from './screens/search';
 import Acc from './screens/acc';
@@ -14,7 +16,9 @@ const { Navigator, Screen } = createNativeStackNavigator();
 
 const AppNavigator = () => (
     <NavigationContainer>
-        <Navigator screenOptions={{ headerShown: false, animationEnabled: false, }} initialRouteName="Main">
+        <Navigator screenOptions={{ headerShown: false, animationEnabled: false, }} initialRouteName="Splash">
+        <Screen name="Splash" component={Splash} options={{ animation: 'none'}}></Screen>
+        <Screen name="SignUp" component={SignUp} options={{ animation: 'none'}}></Screen>
         <Screen name="Main" component={Main} options={{ animation: 'none'}}></Screen>
         <Screen name="Search" component={Search} options={{ animation: 'none'}}></Screen>
         <Screen name="Acc" component={Acc} options={{ animation: 'none'}}></Screen>

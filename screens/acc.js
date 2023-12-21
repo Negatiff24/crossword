@@ -1,5 +1,7 @@
+import React, { useEffect, useState } from 'react';
 import { StatusBar, TouchableOpacity, Text, Image, View, Alert, ScrollView } from 'react-native';
 import styled from 'styled-components/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Violet = styled.View`
     width: 100%;
@@ -138,6 +140,24 @@ export default function Acc(props) {
 	const Main = () => props.navigation.navigate("Main")
     const Search = () => props.navigation.navigate("Search")
 
+    const [nickname, setNickname] = useState('');
+
+    useEffect(() => {
+        const fetchNickname = async () => {
+            try {
+                const accDataString = await AsyncStorage.getItem('accData');
+                const accData = JSON.parse(accDataString);
+                if (accData && accData.nickname) {
+                    setNickname(accData.nickname);
+                }
+            } catch (error) {
+                console.error('Ошибка при получении данных:', error.message);
+            }
+        };
+
+        fetchNickname();
+    }, []);
+
     return (
         <View style={{ flex: 1, backgroundColor: '#F7F6FD', alignItems: 'center', flexDirection: 'column' }}>
             <Violet></Violet>
@@ -146,7 +166,7 @@ export default function Acc(props) {
                     <AccImg source={require('../assets/ava.jpg')}/>
                     <AccPen source={require('../assets/pencil.jpg')}/>
                 </AccBut>
-                <AccNick>negatiff42</AccNick>
+                <AccNick>{nickname}</AccNick>
             </AccTop>
             <Table>
                 <TableLeg>

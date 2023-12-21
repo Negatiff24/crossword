@@ -1,6 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { StatusBar, TouchableOpacity, Text, Image, View, Alert, ScrollView, Animated, Dimensions, StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Hero = styled.View`
   flex: 1;
@@ -180,6 +181,24 @@ export default function Main(props) {
 	const play = () => props.navigation.navigate("Solve")
 	const create = () => props.navigation.navigate("Create")
   const [isScrolling, setIsScrolling] = useState(false);
+  
+  const [nickname, setNickname] = useState('');
+
+  useEffect(() => {
+    const fetchNickname = async () => {
+      try {
+        const accDataString = await AsyncStorage.getItem('accData');
+        const accData = JSON.parse(accDataString);
+        if (accData && accData.nickname) {
+          setNickname(accData.nickname);
+        }
+      } catch (error) {
+        console.error('Ошибка при получении данных:', error.message);
+      }
+    };
+
+    fetchNickname();
+  }, []);
 
   const handleScrollBegin = () => {
     setIsScrolling(true);
@@ -213,7 +232,7 @@ export default function Main(props) {
             <AccountPic source={require('../assets/ava.jpg')}/>
             <AccountRight>
               <AccountText>Добро пожаловать</AccountText>
-              <AccountNick>negatiff42</AccountNick>
+              <AccountNick>{nickname}</AccountNick>
             </AccountRight>
           </Account>
         </HeroAcc>
