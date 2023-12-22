@@ -11,6 +11,8 @@ import Create from './screens/create';
 import AllCat from './screens/AllCat';
 import AllPop from './screens/AllPop';
 import CatArt from './screens/cat.art';
+import CrossList from './screens/CrossList';
+import ThemeList from './screens/ThemeList';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -27,6 +29,8 @@ const AppNavigator = () => (
         <Screen name="AllCat" component={AllCat} options={{ animation: 'none'}}></Screen>
         <Screen name="AllPop" component={AllPop} options={{ animation: 'none'}}></Screen>
         <Screen name="CatArt" component={CatArt} options={{ animation: 'none'}}></Screen>
+        <Screen name="ThemeList" component={ThemeList} options={{ animation: 'none'}}></Screen>
+        <Screen name="CrossList" component={CrossList} options={{ animation: 'none'}}></Screen>
         </Navigator>
     </NavigationContainer>
 )

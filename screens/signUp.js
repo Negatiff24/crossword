@@ -37,7 +37,7 @@ const Input = styled.TextInput`
 `;
 
 const SignUpButton = styled.TouchableOpacity`
-  background: #BCB7FA;
+  background: #6A5EFB;;
   marginTop: 50px;
   width: 88%;
   height: 55px;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StatusBar, TouchableOpacity, Text, Image, View, Alert, ScrollView } from 'react-native';
 import styled from 'styled-components/native';
+import ImagePicker from 'react-native-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Violet = styled.View`
@@ -139,6 +140,35 @@ const NavBarImg = styled.Image`
 export default function Acc(props) {
 	const Main = () => props.navigation.navigate("Main")
     const Search = () => props.navigation.navigate("Search")
+    const create = () => props.navigation.navigate("Create")
+    const CrossList = () => props.navigation.navigate("CrossList")
+    const ThemeList = () => props.navigation.navigate("ThemeList")
+
+    const [avatarSource, setAvatarSource] = useState(null);
+
+    const handleImagePicker = async () => {
+        const options = {
+          title: 'Выберите фотографию',
+          storageOptions: {
+            skipBackup: true,
+            path: 'images',
+          },
+        };
+      
+        ImagePicker.showImagePicker(options, (response) => {
+          if (response.didCancel) {
+            console.log('Пользователь отменил выбор изображения');
+          } else if (response.error) {
+            console.log('Ошибка при выборе изображения:', response.error);
+          } else {
+            // Обновляем изображение в компоненте
+            setAvatarSource({ uri: response.uri });
+      
+            // Вы можете также сохранить путь в AsyncStorage
+            AsyncStorage.setItem('avatarUri', response.uri);
+          }
+        });
+    };
 
     const [nickname, setNickname] = useState('');
 
@@ -162,8 +192,8 @@ export default function Acc(props) {
         <View style={{ flex: 1, backgroundColor: '#F7F6FD', alignItems: 'center', flexDirection: 'column' }}>
             <Violet></Violet>
             <AccTop>
-                <AccBut>
-                    <AccImg source={require('../assets/ava.jpg')}/>
+                <AccBut onPress={handleImagePicker}>
+                    <AccImg source={avatarSource || require('../assets/ava.jpg')}/>
                     <AccPen source={require('../assets/pencil.jpg')}/>
                 </AccBut>
                 <AccNick>{nickname}</AccNick>
@@ -186,12 +216,12 @@ export default function Acc(props) {
                     <TableText>Тем</TableText>
                 </TableLeg>
             </Table>
-            <Cross>
-                <CrossImg source={require('../assets/crossword.png')}/>
+            <Cross onPress={() => ThemeList()}>
+                <CrossImg source={require('../assets/book-05.png')}/>
                 <CrossText>Темы кроссвордов</CrossText>
                 <CrossArr>&gt;</CrossArr>
             </Cross>
-            <Cross>
+            <Cross onPress={() => CrossList()}>
                 <CrossImg source={require('../assets/crossword.png')}/>
                 <CrossText>Кроссворды</CrossText>
                 <CrossArr>&gt;</CrossArr>
@@ -204,7 +234,7 @@ export default function Acc(props) {
                     <NavBarBut onPress={() => Search()}>
                         <NavBarImg source={require('../assets/search-interface-symbol.png')}/>
                     </NavBarBut>
-                    <NavBarBut>
+                    <NavBarBut onPress={() => create()}>
                         <NavBarImg source={require('../assets/add.png')}/>
                     </NavBarBut>
                     <NavBarBut>

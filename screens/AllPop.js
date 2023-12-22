@@ -78,6 +78,7 @@ const NavBarImg = styled.Image`
 export default function AllPop(props) {
     const Main = () => props.navigation.navigate("Main")
 	const Search = () => props.navigation.navigate("Search")
+	const create = () => props.navigation.navigate("Create")
   	const Acc = () => props.navigation.navigate("Acc")
 
     return (
@@ -160,7 +161,7 @@ export default function AllPop(props) {
 					<NavBarBut onPress={() => Search()}>
 						<NavBarImg source={require('../assets/search-interface-symbol.png')}/>
 					</NavBarBut>
-					<NavBarBut>
+					<NavBarBut onPress={() => create()}>
 						<NavBarImg source={require('../assets/add.png')}/>
 					</NavBarBut>
 					<NavBarBut onPress={() => Acc()}>

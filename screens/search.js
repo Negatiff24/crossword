@@ -81,8 +81,8 @@ const CardTop = styled.View`
 `;
 
 const CardImage = styled.Image`
-	width: 45px;
-	height: 45px;
+	width: 100px;
+	height: 100px;
 `;
 
 const CardBottom = styled.View`
@@ -142,6 +142,7 @@ const NavBarImg = styled.Image`
 
 export default function Search(props) {
 	const Main = () => props.navigation.navigate("Main")
+    const create = () => props.navigation.navigate("Create")
     const Acc = () => props.navigation.navigate("Acc")
 
     const [isScrolling, setIsScrolling] = useState(false);
@@ -284,10 +285,10 @@ export default function Search(props) {
                         </BottomCard>
                         <BottomCard onPress={() => cat()}>
                             <CardTop>
-                                <CardImage source={require('../assets/paw.png')}/>
+                                <CardImage source={require('../assets/solar-system.png')}/>
                             </CardTop>
                             <CardBottom>
-                                <CardTitle>Животные</CardTitle>
+                                <CardTitle>Астрономия</CardTitle>
                                 <CardRight>
                                     <CardStr source={require('../assets/list-svgrepo.png')}/>
                                     <CardNum>3</CardNum>
@@ -296,10 +297,10 @@ export default function Search(props) {
                         </BottomCard>
                         <BottomCard onPress={() => cat()}>
                             <CardTop>
-                                <CardImage source={require('../assets/brush.png')}/>
+                                <CardImage source={require('../assets/literature.png')}/>
                             </CardTop>
                             <CardBottom>
-                                <CardTitle>Искусство</CardTitle>
+                                <CardTitle>Литература</CardTitle>
                                 <CardRight>
                                     <CardStr source={require('../assets/list-svgrepo.png')}/>
                                     <CardNum>9</CardNum>
@@ -308,10 +309,10 @@ export default function Search(props) {
                         </BottomCard>
                         <BottomCard onPress={() => cat()}>
                             <CardTop>
-                                <CardImage source={require('../assets/clapboard.png')}/>
+                                <CardImage source={require('../assets/parchment.png')}/>
                             </CardTop>
                             <CardBottom>
-                                <CardTitle>Кино</CardTitle>
+                                <CardTitle>История</CardTitle>
                                 <CardRight>
                                     <CardStr source={require('../assets/list-svgrepo.png')}/>
                                     <CardNum>10</CardNum>
@@ -320,10 +321,10 @@ export default function Search(props) {
                         </BottomCard>
                         <BottomCard onPress={() => cat()}>
                             <CardTop>
-                                <CardImage source={require('../assets/science.png')}/>
+                                <CardImage source={require('../assets/globe.png')}/>
                             </CardTop>
                             <CardBottom>
-                                <CardTitle>Наука</CardTitle>
+                                <CardTitle>География</CardTitle>
                                 <CardRight>
                                     <CardStr source={require('../assets/list-svgrepo.png')}/>
                                     <CardNum>5</CardNum>
@@ -332,10 +333,10 @@ export default function Search(props) {
                         </BottomCard>
                         <BottomCard onPress={() => cat()}>
                             <CardTop>
-                                <CardImage source={require('../assets/paw.png')}/>
+                                <CardImage source={require('../assets/chemistry.png')}/>
                             </CardTop>
                             <CardBottom>
-                                <CardTitle>Животные</CardTitle>
+                                <CardTitle>Химия</CardTitle>
                                 <CardRight>
                                     <CardStr source={require('../assets/list-svgrepo.png')}/>
                                     <CardNum>3</CardNum>
@@ -344,10 +345,10 @@ export default function Search(props) {
                         </BottomCard>
                         <BottomCard onPress={() => cat()}>
                             <CardTop>
-                                <CardImage source={require('../assets/brush.png')}/>
+                                <CardImage source={require('../assets/music-player.png')}/>
                             </CardTop>
                             <CardBottom>
-                                <CardTitle>Искусство</CardTitle>
+                                <CardTitle>Музыка</CardTitle>
                                 <CardRight>
                                     <CardStr source={require('../assets/list-svgrepo.png')}/>
                                     <CardNum>9</CardNum>
@@ -356,10 +357,10 @@ export default function Search(props) {
                         </BottomCard>
                         <BottomCard onPress={() => cat()}>
                             <CardTop>
-                                <CardImage source={require('../assets/clapboard.png')}/>
+                                <CardImage source={require('../assets/biolog.png')}/>
                             </CardTop>
                             <CardBottom>
-                                <CardTitle>Кино</CardTitle>
+                                <CardTitle>Биология</CardTitle>
                                 <CardRight>
                                     <CardStr source={require('../assets/list-svgrepo.png')}/>
                                     <CardNum>10</CardNum>
@@ -437,7 +438,7 @@ export default function Search(props) {
                     <NavBarBut>
                         <NavBarImg source={require('../assets/search-interface-symbol.png')}/>
                     </NavBarBut>
-                    <NavBarBut>
+                    <NavBarBut onPress={() => create()}>
                         <NavBarImg source={require('../assets/add.png')}/>
                     </NavBarBut>
                     <NavBarBut onPress={() => Acc()}>

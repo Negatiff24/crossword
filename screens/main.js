@@ -334,7 +334,7 @@ export default function Main(props) {
             <NavBarBut onPress={() => Search()}>
               <NavBarImg source={require('../assets/search-interface-symbol.png')}/>
             </NavBarBut>
-            <NavBarBut>
+            <NavBarBut onPress={() => create()}>
               <NavBarImg source={require('../assets/add.png')}/>
             </NavBarBut>
             <NavBarBut onPress={() => Acc()}>
